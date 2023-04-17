@@ -5,8 +5,8 @@ import { LegsMemoryService } from './legs.memory.service';
 
 @Resolver(() => Leg)
 export class LegsResolver {
-  // constructor(private readonly legsService: LegsService) {}
-  constructor(private readonly legsService: LegsMemoryService) {}
+  constructor(private readonly legsService: LegsService) {}
+  // constructor(private readonly legsService: LegsMemoryService) {}
 
   @ResolveField(() => [Claw])
   claws(leg: Leg): Promise<Claw[]> {
