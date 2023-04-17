@@ -1,13 +1,18 @@
 import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
+import { Properties as PropertiesModel, Cat as CatModel } from '@prisma/client';
 
 @ObjectType()
-export class Properties {
+export class Properties implements PropertiesModel {
+  id: number;
+
   @Field(() => String)
   color: string;
+
+  catId: number;
 }
 
 @ObjectType()
-export class Cat {
+export class Cat implements CatModel {
   @Field(() => ID, { description: 'ID of the cat' })
   id: number;
 
@@ -17,15 +22,5 @@ export class Cat {
   @Field(() => Int, { description: 'Age of the cat' })
   age: number;
 
-  @Field(() => Properties, {
-    description: 'Properties of the cat',
-    nullable: true,
-  })
-  properties?: Properties;
-
-  @Field(() => [Cat], {
-    description: 'Friends of the cat',
-    nullable: true,
-  })
-  friends?: Cat[];
+  parentId: number;
 }

@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+
+  main:
+    container_name: main
+    build:
+      context: .
+      dockerfile: 'Dockerfile'
+      target: development
+    volumes:
+      - .:/workspace/studio
+      - ./workspace/studio/node_modules:/workspace/studio
+    command: yarn start:debug
+    env_file:
+      - .env
+    ports:
+      - 8080:80
+      # Debugging port
+      - 9229:9229
+    depends_on:
+      - db
+
+  db:
+    container_name: db
+    image: postgres:alpine
+    command: postgres -c listen_addresses='*'
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: studio
+    ports:
+      - 5433:5432

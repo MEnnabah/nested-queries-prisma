@@ -15,12 +15,8 @@ type Cat {
 
   """Age of the cat"""
   age: Int!
-
-  """Properties of the cat"""
+  children: [Cat!]!
   properties: Properties
-
-  """Friends of the cat"""
-  friends: [Cat!]
 }
 
 type Query {

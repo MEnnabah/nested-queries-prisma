@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["extendedWhereUnique"]
+  binaryTargets   = ["native", "linux-musl-openssl-3.0.x", "debian-openssl-1.1.x", "linux-musl-arm64-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Properties {
+  id    Int    @id @default(autoincrement())
+  color String
+
+  cat   Cat? @relation(fields: [catId], references: [id])
+  catId Int?
+}
+
+model Cat {
+  id   Int    @id @default(autoincrement())
+  name String
+  age  Int
+
+  properties Properties[]
+
+  children Cat[] @relation("children")
+  parent   Cat?  @relation("children", fields: [parentId], references: [id])
+  parentId Int?
+}

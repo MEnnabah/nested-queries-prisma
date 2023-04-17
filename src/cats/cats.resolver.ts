@@ -7,7 +7,7 @@ import {
   ResolveField,
 } from '@nestjs/graphql';
 import { CatsService } from './cats.service';
-import { Cat } from './entities/cat.entity';
+import { Cat, Properties } from './entities/cat.entity';
 
 @Resolver(() => Cat)
 export class CatsResolver {
@@ -19,12 +19,12 @@ export class CatsResolver {
   }
 
   @ResolveField(() => [Cat])
-  friends(@Parent() cat: Cat): Promise<Cat[]> {
-    return this.catsService.friendsOf(cat.id);
+  children(@Parent() cat: Cat): Promise<Cat[]> {
+    return this.catsService.children(cat.id);
   }
 
-  @ResolveField(() => Cat['properties'], { nullable: true })
-  properties(@Parent() cat: Cat): Promise<Cat['properties']> {
+  @ResolveField(() => Properties, { nullable: true })
+  properties(@Parent() cat: Cat) {
     console.log('properties', cat);
     return Promise.resolve(this.catsService.propertiesOf(cat.id));
   }
