@@ -2,9 +2,11 @@ This project uses Docker for the app and the db. The port mapping is 8080 (find 
 
 To run the project:
 
-1. docker compose up.
-2. `docker exec -it main /bin/sh` (`main` is the app container, I'm using `/bin/sh` here).
-3. `npx prisma migrate dev` (this will run the migrations and seed the DB).
+1. clone the repo.
+2. `yarn install`
+3. `docker compose up`.
+4. `docker exec -it main /bin/sh` (`main` is the app container, I'm using `/bin/sh` here).
+5. `npx prisma migrate dev` (this will run the migrations and seed the DB).
 
 Open `http://localhost:8080/graphql` and run the following query:
 
@@ -23,9 +25,9 @@ query {
           name
           age
           children {
-          	name
-          	age
-        	}
+            name
+            age
+          }
         }
       }
     }
