@@ -2,8 +2,16 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Properties {
-  color: String!
+type House {
+  id: ID!
+  address: String!
+  ownerId: Int
+}
+
+type Owner {
+  id: ID!
+  name: String!
+  houses: [House!]
 }
 
 type Cat {
@@ -15,8 +23,22 @@ type Cat {
 
   """Age of the cat"""
   age: Int!
-  children: [Cat!]!
-  properties: Properties
+  ownerId: Int!
+  legs: [Leg!]!
+  owner: Owner!
+}
+
+type Leg {
+  id: ID!
+  color: String!
+  catId: Int!
+  claws: [Claw!]
+}
+
+type Claw {
+  id: ID!
+  length: String!
+  legId: Int!
 }
 
 type Query {

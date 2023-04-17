@@ -2,9 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["extendedWhereUnique"]
-  binaryTargets   = ["native", "linux-musl-openssl-3.0.x", "debian-openssl-1.1.x", "linux-musl-arm64-openssl-3.0.x"]
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
 }
 
 datasource db {
@@ -12,22 +11,47 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Properties {
-  id    Int    @id @default(autoincrement())
-  color String
-
-  cat   Cat? @relation(fields: [catId], references: [id])
-  catId Int?
-}
-
 model Cat {
   id   Int    @id @default(autoincrement())
   name String
   age  Int
 
-  properties Properties[]
+  owner   Owner? @relation(fields: [ownerId], references: [id])
+  ownerId Int?
 
-  children Cat[] @relation("children")
-  parent   Cat?  @relation("children", fields: [parentId], references: [id])
-  parentId Int?
+  legs Leg[]
+}
+
+model Leg {
+  id    Int    @id @default(autoincrement())
+  color String
+
+  cat   Cat? @relation(fields: [catId], references: [id])
+  catId Int?
+
+  claws Claw[]
+}
+
+model Claw {
+  id     Int    @id @default(autoincrement())
+  length String
+
+  leg   Leg? @relation(fields: [legId], references: [id])
+  legId Int?
+}
+
+model Owner {
+  id   Int    @id @default(autoincrement())
+  name String
+
+  Cat   Cat[]
+  House House[]
+}
+
+model House {
+  id      Int    @id @default(autoincrement())
+  address String
+
+  owner   Owner? @relation(fields: [ownerId], references: [id])
+  ownerId Int?
 }

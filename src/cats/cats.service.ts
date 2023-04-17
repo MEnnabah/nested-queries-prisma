@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Cat } from './entities/cat.entity';
 import { PrismaService } from 'src/prisma.service';
+import { Cat, Leg, Owner } from './entities/cat.entity';
 
 @Injectable()
 export class CatsDiskService {
@@ -12,17 +12,15 @@ export class CatsDiskService {
     });
   }
 
-  children(id: number): Promise<Cat[]> {
-    return this.prisma.cat.findMany({
-      where: { parentId: id },
+  owner(cat: Cat): Promise<Owner> {
+    return this.prisma.owner.findUnique({
+      where: { id: cat.id },
     });
   }
 
-  propertiesOf(id: number) {
-    return this.prisma.properties.findMany({
-      where: {
-        catId: id,
-      },
+  legs(cat: Cat): Promise<Leg[]> {
+    return this.prisma.leg.findMany({
+      where: { catId: cat.id },
     });
   }
 }
