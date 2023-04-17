@@ -3,7 +3,7 @@ import { Cat } from './entities/cat.entity';
 import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
-export class CatsService {
+export class CatsDiskService {
   constructor(private prisma: PrismaService) {}
 
   findOne(id: number): Promise<Cat> {

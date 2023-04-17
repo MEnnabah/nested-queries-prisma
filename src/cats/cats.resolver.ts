@@ -6,12 +6,18 @@ import {
   Parent,
   ResolveField,
 } from '@nestjs/graphql';
-import { CatsService } from './cats.service';
 import { Cat, Properties } from './entities/cat.entity';
+import { CatsDiskService } from './cats.disk.service';
+import { InMemoryCatsService } from './cats.memory.service';
 
 @Resolver(() => Cat)
 export class CatsResolver {
-  constructor(private readonly catsService: CatsService) {}
+  /**
+   * Toggle between the following constructors to test either behavior
+   */
+
+  constructor(private readonly catsService: CatsDiskService) {}
+  // constructor(private readonly catsService: InMemoryCatsService) {}
 
   @Query(() => Cat, { name: 'cat' })
   findOne(@Args('id', { type: () => Int }) id: number): Promise<Cat> {
