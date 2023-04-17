@@ -23,9 +23,9 @@ query {
           name
           age
           children {
-          	name
-          	age
-        	}
+            name
+            age
+          }
         }
       }
     }
