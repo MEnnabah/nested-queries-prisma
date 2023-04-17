@@ -1,0 +1,28 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Properties {
+  color: String!
+}
+
+type Cat {
+  """ID of the cat"""
+  id: ID!
+
+  """Name of the cat"""
+  name: String!
+
+  """Age of the cat"""
+  age: Int!
+
+  """Properties of the cat"""
+  properties: Properties
+
+  """Friends of the cat"""
+  friends: [Cat!]
+}
+
+type Query {
+  cat(id: Int!): Cat!
+}
