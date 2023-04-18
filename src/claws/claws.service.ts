@@ -13,14 +13,14 @@ export class ClawsService {
    * However, using `findUnique` will work.
    */
 
-  // async claws(leg: Leg) {
-  //   const x = await this.prismaService.claw.findMany({
-  //     where: {
-  //       legId: leg.id,
-  //     },
-  //   });
-  //   return [x[0]];
-  // }
+  async claws(leg: Leg) {
+    const x = await this.prismaService.claw.findMany({
+      where: {
+        legId: leg.id,
+      },
+    });
+    return [x[0]];
+  }
 
   // async claws(leg: Leg) {
   //   const x = await this.prismaService.claw.findFirst({
@@ -60,17 +60,17 @@ export class ClawsService {
   //   return [x];
   // }
 
-  async claws(leg: Leg) {
-    const x = await this.prismaService.claw.findUnique({
-      where: {
-        id: 1,
-      },
-    });
-    const y = await this.prismaService.claw.findUnique({
-      where: {
-        id: 2,
-      },
-    });
-    return [x, y];
-  }
+  // async claws(leg: Leg) {
+  //   const x = await this.prismaService.claw.findUnique({
+  //     where: {
+  //       id: 1,
+  //     },
+  //   });
+  //   const y = await this.prismaService.claw.findUnique({
+  //     where: {
+  //       id: 2,
+  //     },
+  //   });
+  //   return [x, y];
+  // }
 }
