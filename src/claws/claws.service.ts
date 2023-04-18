@@ -19,7 +19,7 @@ export class ClawsService {
         legId: leg.id,
       },
     });
-    return [x[0]];
+    return x;
   }
 
   // async claws(leg: Leg) {
