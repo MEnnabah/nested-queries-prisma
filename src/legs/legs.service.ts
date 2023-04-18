@@ -1,14 +1,16 @@
 import { Injectable } from '@nestjs/common';
+import { Cat } from '@prisma/client';
 import { PrismaService } from 'src/prisma.service';
-import { Claw, Leg } from './entities/cat.entity';
 
 @Injectable()
 export class LegsService {
   constructor(private prisma: PrismaService) {}
 
-  claws(leg: Leg): Promise<Claw[]> {
-    return this.prisma.claw.findMany({
-      where: { legId: leg.id },
+  legs(cat: Cat) {
+    return this.prisma.leg.findMany({
+      where: {
+        catId: cat.id,
+      },
     });
   }
 }
