@@ -6,8 +6,8 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { CatsModule } from './cats/cats.module';
 import { OwnersModule } from './owners/owners.module';
 import { LegsModule } from './legs/legs.module';
-import { ClawsService } from './claws/claws.service';
 import { ClawsModule } from './claws/claws.module';
+import { HouseModule } from './house/house.module';
 
 @Module({
   imports: [
@@ -23,6 +23,7 @@ import { ClawsModule } from './claws/claws.module';
     OwnersModule,
     LegsModule,
     ClawsModule,
+    HouseModule,
   ],
   controllers: [AppController],
   providers: [AppService],

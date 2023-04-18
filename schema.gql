@@ -19,6 +19,13 @@ type Cat {
 type Owner {
   id: ID!
   name: String!
+  houses: [House!]!
+}
+
+type House {
+  id: ID!
+  address: String!
+  ownerId: Int!
 }
 
 type Leg {
@@ -36,4 +43,6 @@ type Claw {
 
 type Query {
   cat(id: Int!): Cat!
+  ownerById(id: Int!): Owner!
+  house(id: Int!): House!
 }

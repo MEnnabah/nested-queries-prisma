@@ -1,6 +1,5 @@
 import { ObjectType, Field, Int, ID } from '@nestjs/graphql';
 import { Cat as CatModel } from '@prisma/client';
-import { Owner } from 'src/owners/entities/owner.entity';
 
 @ObjectType()
 export class Cat implements CatModel {

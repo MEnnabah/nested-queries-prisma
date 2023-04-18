@@ -6,7 +6,13 @@ import { Cat, Owner } from '@prisma/client';
 export class OwnersService {
   constructor(private prisma: PrismaService) {}
 
-  owner(cat: Cat): Promise<Owner> {
+  ownerById(id: number): Promise<Owner> {
+    return this.prisma.owner.findUnique({
+      where: { id },
+    });
+  }
+
+  ownerByCat(cat: Cat): Promise<Owner> {
     return this.prisma.owner.findUnique({
       where: { id: cat.ownerId },
     });
