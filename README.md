@@ -1,3 +1,7 @@
+**Update 1**: *Prisma merged a PR to the engine images repo to potentionally fix this issue https://github.com/prisma/engine-images/pull/75. It's part of the 5.3.0 milestone*.
+
+---
+
 This project is demo of a crash while using Prisma and GraphQL.
 We have demonstrated the crash only is triggered when:
 
